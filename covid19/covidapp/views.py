@@ -12,17 +12,19 @@ response = requests.request("GET", url, headers=headers).json()
 
 
 def  helloworldviews(request):
+    ''' 
+         renders the api data to the html page 
+         Author: Chidambar Joshi
+    '''
     noofresults=int(response['results'])
     mylist =[]
     for x in range(0,noofresults):
         mylist.append(response['response'][x]['country'])
-    print(type(mylist))
-    print(mylist.sort())
     selectedcountry='All'
     new=active=total=critical=recovered=deaths=newdeaths=""
     if request.POST:
         selectedcountry= request.POST['selectedcountry']
-        print(selectedcountry)
+       
 
     for x in range(0,noofresults):
         if selectedcountry==response['response'][x]['country']:
@@ -52,5 +54,5 @@ def  helloworldviews(request):
                 'updatedtime':updatedtime,
                 'mylist':sorted(mylist)
             }
-            
+
     return render (request,'index.html',context)
