@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>
+            Index
+        </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .container{
+            border-radius:20px ;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        h1, p{
+            text-align: center;
+        }
+        form{
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+    </style>
+    </head>
+
+<body style="background-color: black;">
+    
+    
+    
+
+    <h1 style="color: white;"><span style="color:red;"> COVID-19 </span>WORLDWIDE DATA</h1>
+
+    <form method="post" class="d-flex justify-content-center align-items-center" >
+        {% csrf_token %}
+        <select class="form-control" style="width: 200px;" name="selectedcountry" onchange="this.form.submit()">
+        {%for country in mylist%}
+            <option {%if selectedcountry == country %}selected{%endif%}> {{country}}</option>
+            {%endfor%}
+        </select>
+        
+    </form>
+    <h1 style=" margin-top:50px ; color: white;text-align: center;" >{{selectedcountry}}</h1>
+
+    <h7 style="color: ivory;">Last Updated : {{updatedtime|date:"D d M Y P "}}</h7>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="container" style="height: 100px; width: 200px; background-color: skyblue;">
+            <h1>{%if new %}
+                {{new}} 
+                {%else%}
+                0
+                {%endif%}</h1>
+            <p>New Cases</p>
+        </div>
+       
+        <div class="container" style="height: 100px; width: 200px; background-color: green;">
+            <h1>{%if recovered %}{{recovered}}{%else%}
+                0
+                {%endif%}</h1>
+            <p>Recoverd</p>
+        </div>
+        <div class="container" style="height: 100px; width: 200px; background-color: gray;">
+            <h1>{%if deaths %}{{deaths}}{%else%}
+                0
+                {%endif%}</h1>
+            <p>Deaths</p>
+        </div>
+        
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="container"style="background-color:yellow; height: 100px; width: 200px;">
+            <h1>{%if active %}{{active}}{%else%}
+                0
+                {%endif%}</h1>
+            <p>Active cases</p>
+        </div>
+        <div class="container" style=" background-color:red;height: 100px; width: 200px;">
+            <h1>{%if critical %}{{critical}}{%else%}
+                0
+                {%endif%}</h1>
+            <p>Critical Cases</p>
+        </div>
+        <div class="container"style="background-color : orange; height: 100px; width: 200px;" >
+            <h1>{%if total %}{{total}}{%else%}
+                0
+                {%endif%}</h1>
+            <p>total cases</p>
+        </div>
+        
+    </div>
+    <p style="color: gray;margin-top: 50px;">Developed By<span style="color: honeydew;">Chidambar Joshi</span></p>
+</body>
+</html>
