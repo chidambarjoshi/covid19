@@ -4,12 +4,10 @@ import json
 from dateutil.parser import parse
 
 url = "https://covid-193.p.rapidapi.com/statistics"
-
 headers = {
     'x-rapidapi-key': "4ddfd41466msh069fbd82db6e9bbp1c4c1ejsn4dbe74d83eaf",
     'x-rapidapi-host': "covid-193.p.rapidapi.com"
     }
-
 response = requests.request("GET", url, headers=headers).json()
 
 
@@ -54,4 +52,5 @@ def  helloworldviews(request):
                 'updatedtime':updatedtime,
                 'mylist':sorted(mylist)
             }
+            
     return render (request,'index.html',context)

@@ -30,11 +30,14 @@
 
     <form method="post" class="d-flex justify-content-center align-items-center" >
         {% csrf_token %}
+        <div class="form-group">
+        <label style="text-align: center;">Select Country</label>
         <select class="form-control" style="width: 200px;" name="selectedcountry" onchange="this.form.submit()">
         {%for country in mylist%}
             <option {%if selectedcountry == country %}selected{%endif%}> {{country}}</option>
             {%endfor%}
         </select>
+    </div>
         
     </form>
     <h1 style=" margin-top:50px ; color: white;text-align: center;" >{{selectedcountry}}</h1>
